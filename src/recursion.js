@@ -7,31 +7,135 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+
+if (n < 0) {
+	return null;
+}
+
+// Base Case
+if (n === 0) {
+	return 1;
+}
+
+// Recursive Case
+return n * factorial(n-1);
+
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+
+// Base Case
+// Once the array length is equal to 0 then only don't add anything else to the sum 
+if (array.length === 0) {
+	return 0;
+}
+
+// Recursive Case 
+// Start with the first item in the array and then add 
+return array[0] + sum(array.slice(1));
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  
+  // Create a sum variable that will store the sum
+  var sum = 0;
+  
+  // For loop that iterates through every item in the array
+  for (var i = 0; i < array.length; i++) {
+  // If an item is an array then call the function again using recursion
+    if (Array.isArray(array[i])) {
+      sum += arraySum(array[i]);
+    } else {
+      sum += array[i];
+    }
+  }
+  
+  return sum
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+
+// Base Case
+// Even
+if (n === 0) {
+	return true;
+}
+// Odd
+if (n == 1) {
+	return false;
+}
+console.log(n);
+
+if (n < 0) {
+	return isEven(-n);
+}
+// Recursive Case
+return isEven(n - 2);
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+
+	// Base case
+	if (n === 0) {
+	  return 0;
+	}
+	
+	// Recursive case
+	return (n-1) + sumBelow(n-1)
+	
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+	// Range Array
+	var numbersInRange = [];
+
+	// Base Case
+	// if (y === x) stop the recursion
+	// while y !== x
+
+	if (x < y) {
+
+	while(x < y) {
+	    x++;
+	    if (x !== y) {
+			numbersInRange.push(x);
+			console.log(x);
+			range(x);
+	    }
+	}
+
+    } else if (x > y){
+
+    while(x > y) {
+	    x--;
+	    if (x !== y) {
+			numbersInRange.push(x);
+			console.log(x);
+			range(x);
+	    }
+	}
+		
+    } 
+
+	return numbersInRange;
+	// numbersInRange.push(y)
+	// range(y-1)
+
+	// Recursive Case
+	// Count down from y to x and push the integers into an array
+
 };
 
 // 7. Compute the exponent of a number.
